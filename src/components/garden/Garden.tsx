@@ -11,6 +11,8 @@ import {
   GlowBlooms,
   Flowers,
   Gardener,
+  NightLights,
+  NightTint,
   Ground,
   Overlay,
   PATH_MAIN,
@@ -172,8 +174,10 @@ export function Garden({ focus, roleIndex, narrow, wide, onSelect }: Props) {
           )
         })}
 
+        <NightTint />
         <Gardener pos={gardener} bubble={bubble} onClick={() => setBubble(true)} />
         <GlowBlooms />
+        <NightLights />
         <Fireflies />
       </g>
       <Clouds />

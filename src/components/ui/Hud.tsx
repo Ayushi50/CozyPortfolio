@@ -10,6 +10,8 @@ interface Props {
   onHome: () => void
   onToggleSound: () => void
   onToggleClassic: () => void
+  night: boolean
+  onToggleNight: () => void
 }
 
 const glass = 'border border-cream/20 bg-[#1b281a]/60 backdrop-blur-md'
@@ -23,7 +25,7 @@ function Speaker({ off }: { off: boolean }) {
   )
 }
 
-export function Hud({ focus, visited, muted, classic, onOpen, onHome, onToggleSound, onToggleClassic }: Props) {
+export function Hud({ focus, visited, muted, classic, onOpen, onHome, onToggleSound, onToggleClassic, night, onToggleNight }: Props) {
   const [menu, setMenu] = useState(false)
   const btn = 'rounded-full px-3.5 py-2 text-[0.8rem] font-medium tracking-wide transition'
   return (
@@ -106,6 +108,21 @@ export function Hud({ focus, visited, muted, classic, onOpen, onHome, onToggleSo
             <span className="hidden sm:inline">{muted ? 'Sound off' : 'Sound on'}</span>
           </button>
           <button
+            onClick={onToggleNight}
+            aria-pressed={night}
+            aria-label={night ? 'Switch to day' : 'Switch to night'}
+            className={`${glass} flex items-center gap-2 whitespace-nowrap rounded-full px-3 py-2 text-xs font-medium text-cream hover:bg-[#1b281a]/80`}
+          >
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+              {night ? (
+                <g><circle cx="8" cy="8" r="3" /><path d="M8 1.5v1.6M8 12.9v1.6M1.5 8h1.6M12.9 8h1.6M3.4 3.4l1.1 1.1M11.5 11.5l1.1 1.1M3.4 12.6l1.1-1.1M11.5 4.5l1.1-1.1" /></g>
+              ) : (
+                <path d="M13 9.5A5.5 5.5 0 016.5 3a5.5 5.5 0 106.5 6.5z" />
+              )}
+            </svg>
+            <span className="hidden sm:inline">{night ? 'Day' : 'Night'}</span>
+          </button>
+          <button
             onClick={onToggleClassic}
             aria-pressed={classic}
             className={`${glass} whitespace-nowrap rounded-full px-3.5 py-2 text-xs font-medium text-cream hover:bg-[#1b281a]/80`}
@@ -137,7 +154,7 @@ export function Hud({ focus, visited, muted, classic, onOpen, onHome, onToggleSo
         </div>
 
         <p className={`${glass} hidden rounded-full px-3.5 py-2 text-[0.7rem] text-cream/85 lg:block`}>
-          Keys <b className="text-gold">1–5</b> jump · <b className="text-gold">Esc</b> back · <b className="text-gold">←/→</b> browse
+          Keys <b className="text-gold">1–5</b> jump · <b className="text-gold">Esc</b> back · <b className="text-gold">←/→</b> browse · <b className="text-gold">N</b> night
         </p>
         <span className="w-10 lg:hidden" aria-hidden />
       </div>

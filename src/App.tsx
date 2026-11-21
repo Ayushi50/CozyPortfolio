@@ -38,7 +38,26 @@ export default function App() {
   const [classic, setClassic] = useState(false)
   const narrow = useNarrow()
   const wide = useWide()
-  const { muted, toggle, play } = useSound()
+  const [night, setNight] = useState(() => {
+    try {
+      const saved = localStorage.getItem('garden-night')
+      if (saved) return saved === '1'
+    } catch {
+      /* storage unavailable */
+    }
+    return window.matchMedia('(prefers-color-scheme: dark)').matches
+  })
+  const toggleNight = useCallback(() => {
+    setNight((n) => {
+      try {
+        localStorage.setItem('garden-night', n ? '0' : '1')
+      } catch {
+        /* storage unavailable */
+      }
+      return !n
+    })
+  }, [])
+  const { muted, toggle, play } = useSound(night)
   const timer = useRef<number | undefined>(undefined)
 
   const open = useCallback(
@@ -76,13 +95,14 @@ export default function App() {
       if (s) open(s.id)
       if (e.key === '6') window.open('https://ayushi-dev.netlify.app/images/Ayushi_Resume.pdf', '_blank', 'noreferrer')
       if (e.key.toLowerCase() === 'm') toggle()
+      if (e.key.toLowerCase() === 'n') toggleNight()
     }
     window.addEventListener('keydown', h)
     return () => window.removeEventListener('keydown', h)
-  }, [open, home, toggle, classic])
+  }, [open, home, toggle, toggleNight, classic])
 
   return (
-    <div className="relative h-full w-full overflow-hidden bg-forest-deep">
+    <div className={`relative h-full w-full overflow-hidden bg-forest-deep ${night ? 'night' : ''}`}>
       <h1 className="sr-only">Ayushi — Software Engineer. An interactive garden portfolio.</h1>
       <Garden focus={focus} roleIndex={roleIndex} narrow={narrow} wide={wide} onSelect={open} />
       <Hud
@@ -93,6 +113,8 @@ export default function App() {
         onOpen={open}
         onHome={home}
         onToggleSound={toggle}
+        night={night}
+        onToggleNight={toggleNight}
         onToggleClassic={() => {
           home()
           setClassic((c) => !c)

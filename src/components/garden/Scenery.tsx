@@ -1,4 +1,5 @@
 import { useLayoutEffect, useMemo, useState } from 'react'
+import { Beret, CharDefs } from './Characters'
 
 export const PATH_MAIN =
   'M800 950 C 780 860 600 860 620 770 C 640 680 900 700 880 595 C 860 505 640 525 590 475 C 550 435 470 455 432 420'
@@ -43,29 +44,29 @@ function rng(seed: number) {
 
 export function Defs() {
   const leaf = [
-    ['#a9bd8f', '#6f8f62', '#3d5638'],
-    ['#b4c496', '#789868', '#41603d'],
-    ['#9fb58a', '#668560', '#38523a'],
+    ['#bcd49b', '#7fa86a', '#456b40'],
+    ['#c4d9a0', '#88b070', '#4a7244'],
+    ['#b2cc92', '#76a062', '#3f6139'],
   ]
   return (
     <defs>
       <radialGradient id="gGrass" gradientUnits="userSpaceOnUse" cx="760" cy="400" r="1200">
-        <stop offset="0" stopColor="#a3b58c" />
-        <stop offset="0.5" stopColor="#8ba27a" />
-        <stop offset="1" stopColor="#5d7757" />
+        <stop offset="0" stopColor="#b6cc8f" />
+        <stop offset="0.5" stopColor="#8fb072" />
+        <stop offset="1" stopColor="#689060" />
       </radialGradient>
       <radialGradient id="gVignette" gradientUnits="userSpaceOnUse" cx="800" cy="450" r="1100">
         <stop offset="0.5" stopColor="#2b3a28" stopOpacity="0" />
-        <stop offset="1" stopColor="#1f2c1d" stopOpacity="0.78" />
+        <stop offset="1" stopColor="#1f2c1d" stopOpacity="0.5" />
       </radialGradient>
       <linearGradient id="gSun" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="900" y2="700">
         <stop offset="0" stopColor="#f8e7b0" stopOpacity="0.3" />
         <stop offset="0.55" stopColor="#f8e7b0" stopOpacity="0" />
       </linearGradient>
       <linearGradient id="gDusk" gradientUnits="userSpaceOnUse" x1="0" y1="-300" x2="0" y2="950">
-        <stop offset="0" stopColor="#b9a8cf" stopOpacity="0.34" />
-        <stop offset="0.5" stopColor="#e6b9a0" stopOpacity="0.12" />
-        <stop offset="1" stopColor="#f3dcc0" stopOpacity="0.14" />
+        <stop offset="0" stopColor="#c9b8d6" stopOpacity="0.12" />
+        <stop offset="0.5" stopColor="#e9c7a8" stopOpacity="0.05" />
+        <stop offset="1" stopColor="#f3e2c4" stopOpacity="0.06" />
       </linearGradient>
       <radialGradient id="gGlowSun" gradientUnits="userSpaceOnUse" cx="1320" cy="40" r="620">
         <stop offset="0" stopColor="#fff1dc" stopOpacity="0.4" />
@@ -86,11 +87,11 @@ export function Defs() {
         <stop offset="1" stopColor="#1a2418" stopOpacity="0" />
       </radialGradient>
       <radialGradient id="gPatchL">
-        <stop offset="0" stopColor="#c3d1a6" stopOpacity="0.4" />
+        <stop offset="0" stopColor="#d4e6a8" stopOpacity="0.45" />
         <stop offset="1" stopColor="#c3d1a6" stopOpacity="0" />
       </radialGradient>
       <radialGradient id="gPatchD">
-        <stop offset="0" stopColor="#4f6a4a" stopOpacity="0.4" />
+        <stop offset="0" stopColor="#4a7a46" stopOpacity="0.4" />
         <stop offset="1" stopColor="#4f6a4a" stopOpacity="0" />
       </radialGradient>
       {leaf.map((c, i) => (
@@ -134,6 +135,19 @@ export function Defs() {
         <stop offset="0.4" stopColor="#f6dc8a" stopOpacity="0.6" />
         <stop offset="1" stopColor="#f6dc8a" stopOpacity="0" />
       </radialGradient>
+      <radialGradient id="gLamp">
+        <stop offset="0" stopColor="#ffd98a" stopOpacity="0.85" />
+        <stop offset="0.45" stopColor="#ffc46a" stopOpacity="0.32" />
+        <stop offset="1" stopColor="#ffc46a" stopOpacity="0" />
+      </radialGradient>
+      <radialGradient id="gMoon" gradientUnits="userSpaceOnUse" cx="1180" cy="120" r="900">
+        <stop offset="0" stopColor="#9db8ff" stopOpacity="0.26" />
+        <stop offset="1" stopColor="#9db8ff" stopOpacity="0" />
+      </radialGradient>
+      <radialGradient id="gMoonWater">
+        <stop offset="0" stopColor="#bfd4ff" stopOpacity="0.45" />
+        <stop offset="1" stopColor="#bfd4ff" stopOpacity="0" />
+      </radialGradient>
       <filter id="grain" x="-700" y="-500" width="3000" height="1900" filterUnits="userSpaceOnUse">
         <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="4" result="n" />
         <feColorMatrix type="matrix" values="0 0 0 0 0.1  0 0 0 0 0.12  0 0 0 0 0.08  0 0 0 0.55 -0.12" />
@@ -172,7 +186,7 @@ export function Ground() {
           key={i}
           transform={`translate(${t.x} ${t.y}) scale(${t.s})`}
           d="M-7 0 Q-6 -8 -10 -12 M-2 0 Q-2 -11 -4 -16 M3 0 Q4 -12 7 -17 M8 0 Q8 -7 12 -10"
-          stroke={t.d ? '#566f50' : '#b3c59a'}
+          stroke={t.d ? '#4f7a49' : '#c2dba0'}
           strokeWidth="1.4"
           fill="none"
           strokeLinecap="round"
@@ -190,16 +204,63 @@ export function Overlay() {
   return (
     <g style={{ pointerEvents: 'none' }}>
       <rect x="-700" y="-500" width="3000" height="1900" fill="url(#gVignette)" />
-      <rect x="-700" y="-500" width="3000" height="1900" fill="url(#gSun)" />
-      <rect x="-700" y="-500" width="3000" height="1900" fill="url(#gDusk)" />
-      <rect x="-700" y="-500" width="3000" height="1900" fill="url(#gGlowSun)" />
-      {/* soft light shafts */}
-      <g style={{ mixBlendMode: 'screen' }} opacity=".16">
-        <polygon points="120,-40 260,-40 700,980 520,980" fill="url(#gBeam)" />
-        <polygon points="420,-40 520,-40 1000,980 880,980" fill="url(#gBeam)" />
-        <polygon points="760,-40 830,-40 1260,980 1170,980" fill="url(#gBeam)" />
+      <g className="day-only">
+        <rect x="-700" y="-500" width="3000" height="1900" fill="url(#gSun)" />
+        <rect x="-700" y="-500" width="3000" height="1900" fill="url(#gDusk)" />
+        <rect x="-700" y="-500" width="3000" height="1900" fill="url(#gGlowSun)" />
+        <g style={{ mixBlendMode: 'screen' }} opacity=".16">
+          <polygon points="120,-40 260,-40 700,980 520,980" fill="url(#gBeam)" />
+          <polygon points="420,-40 520,-40 1000,980 880,980" fill="url(#gBeam)" />
+          <polygon points="760,-40 830,-40 1260,980 1170,980" fill="url(#gBeam)" />
+        </g>
       </g>
-      <rect x="-700" y="-500" width="3000" height="1900" filter="url(#grain)" opacity=".3" style={{ mixBlendMode: 'multiply' }} />
+      <rect x="-700" y="-500" width="3000" height="1900" filter="url(#grain)" opacity=".15" style={{ mixBlendMode: 'multiply' }} />
+    </g>
+  )
+}
+
+/** Night: a deep-blue tint over the world (inside the camera so it moves with it). */
+export function NightTint() {
+  return (
+    <g className="night-only" style={{ pointerEvents: 'none' }}>
+      <rect x="-700" y="-500" width="3000" height="1900" fill="#16264e" fillOpacity="0.66" style={{ mixBlendMode: 'multiply' }} />
+      <rect x="-700" y="-500" width="3000" height="1900" fill="url(#gMoon)" style={{ mixBlendMode: 'screen' }} />
+    </g>
+  )
+}
+
+/** Warm lights that sit above the night tint. */
+export function NightLights() {
+  const pools: [number, number, number][] = [
+    [700, 826, 70], [640, 740, 64], [880, 600, 70], [1040, 640, 60], [560, 480, 64], [1250, 740, 60],
+  ]
+  return (
+    <g className="night-only" style={{ pointerEvents: 'none' }}>
+      {/* cottage windows + lantern */}
+      {[352, 508].map((x) => (
+        <g key={x}>
+          <circle cx={x} cy={366} r="56" fill="url(#gLamp)" />
+          <rect x={x - 17} y={358} width="34" height="42" rx="3" fill="#ffd98a" opacity=".95" />
+          <path d={`M${x} 358V400M${x - 17} 379H${x + 17}`} stroke="#8a6445" strokeWidth="2.5" />
+        </g>
+      ))}
+      <circle cx="482" cy="350" r="48" fill="url(#gLamp)" />
+      <circle cx="430" cy="372" r="16" fill="#ffd98a" opacity=".5" />
+      {/* greenhouse glows from within */}
+      <path d="M998 384 V290 L1130 210 L1262 290 V384Z" fill="#ffe3a0" opacity=".34" />
+      <circle cx="1130" cy="330" r="150" fill="url(#gLamp)" opacity=".7" />
+      {/* shed window */}
+      <circle cx="1345" cy="660" r="46" fill="url(#gLamp)" />
+      <rect x="1330" y="640" width="30" height="28" rx="2" fill="#ffd98a" opacity=".95" />
+      {/* garden lamp pools along the path */}
+      {pools.map(([x, y, r], i) => (
+        <g key={i}>
+          <circle cx={x} cy={y} r={r} fill="url(#gLamp)" opacity=".75" />
+          <circle cx={x} cy={y} r="3.4" fill="#fff1c4" />
+        </g>
+      ))}
+      {/* moonlit pond */}
+      <ellipse cx="270" cy="708" rx="110" ry="60" fill="url(#gMoonWater)" />
     </g>
   )
 }
@@ -463,15 +524,22 @@ export function Clouds() {
 export function Fireflies() {
   const flies = useMemo(() => {
     const r = rng(41)
-    return Array.from({ length: 12 }).map(() => ({ x: 120 + r() * 1360, y: 160 + r() * 700, d: r() * 14, dur: 8 + r() * 6 }))
+    return Array.from({ length: 30 }).map(() => ({ x: 120 + r() * 1360, y: 160 + r() * 700, d: r() * 14, dur: 8 + r() * 6 }))
   }, [])
   return (
     <g style={{ pointerEvents: 'none' }}>
-      {flies.map((f, i) => (
+      {flies.slice(0, 12).map((f, i) => (
         <g key={i} className="firefly" style={{ animationDelay: `${f.d}s`, animationDuration: `${f.dur}s` }}>
           <circle cx={f.x} cy={f.y} r="9" fill="url(#gFly)" />
         </g>
       ))}
+      <g className="night-only">
+        {flies.slice(12).map((f, i) => (
+          <g key={i} className="firefly" style={{ animationDelay: `${f.d}s`, animationDuration: `${f.dur}s` }}>
+            <circle cx={f.x} cy={f.y} r="12" fill="url(#gFly)" />
+          </g>
+        ))}
+      </g>
     </g>
   )
 }
@@ -487,27 +555,10 @@ export function Gardener({ pos, bubble, onClick }: { pos: Pt; bubble: boolean; o
       aria-label="A tiny gardener"
     >
       <ellipse cx="2" cy="2" rx="17" ry="5" fill="#1f2a1c" opacity=".3" />
-      <g className="bob">
-        {/* legs */}
-        <rect x="-8" y="-14" width="6" height="14" rx="3" fill="#6b4b32" />
-        <rect x="2" y="-14" width="6" height="14" rx="3" fill="#6b4b32" />
-        {/* dress */}
-        <path d="M-13 -14 L-9 -42 H9 L13 -14 Z" fill="#6f8a63" />
-        <path d="M-7 -14 L-5 -38 H5 L7 -14Z" fill="#ece7d7" />
-        {/* arms */}
-        <path d="M-9 -40 q-8 10 -4 22" stroke="#e0b394" strokeWidth="5" strokeLinecap="round" fill="none" />
-        <path d="M9 -40 q8 10 4 22" stroke="#e0b394" strokeWidth="5" strokeLinecap="round" fill="none" />
-        {/* head */}
-        <circle cx="0" cy="-52" r="11" fill="#e8bd9d" />
-        <path d="M-11 -54 q0 -12 11 -12 q11 0 11 12 q-5 -7 -11 -7 q-6 0 -11 7z" fill="#4a3426" />
-        <circle cx="10" cy="-62" r="5" fill="#4a3426" />
-        <circle cx="-4" cy="-52" r="1.3" fill="#3a2a20" />
-        <circle cx="4" cy="-52" r="1.3" fill="#3a2a20" />
-        <path d="M-2 -47 q2 2 4 0" stroke="#b9705e" strokeWidth="1.2" fill="none" />
-        {/* hat */}
-        <ellipse cx="0" cy="-60" rx="20" ry="5.5" fill="#d9c58a" />
-        <path d="M-11 -61 q0 -13 11 -13 q11 0 11 13z" fill="#e6d49a" />
-        <path d="M-11 -62 h22" stroke="#c68f78" strokeWidth="3" />
+      <CharDefs />
+      <circle className="night-only" cy="-30" r="60" fill="url(#gLamp)" style={{ pointerEvents: 'none' }} />
+      <g className="bob" transform="scale(1.22)">
+        <Beret />
       </g>
       {bubble && (
         <g transform="translate(0 -92)">

@@ -316,3 +316,37 @@ body {
 .flower-glow {
   animation: glow 4s ease-in-out infinite;
 }
+
+/* ---------- day / night ---------- */
+.night-only {
+  opacity: 0;
+  transition: opacity 0.9s ease;
+}
+.night .night-only {
+  opacity: 1;
+}
+.day-only {
+  transition: opacity 0.9s ease;
+}
+.night .day-only {
+  opacity: 0;
+}
+
+/* dialogs in night mode: re-theme via the same design tokens */
+.night .paper {
+  --color-ink: #ece7d7;
+  --color-forest-deep: #dbe9cc;
+  --color-forest: #a9c99a;
+  --color-wood-deep: #d9b794;
+  --color-cream: #2b3829;
+  --color-cream-deep: #222d21;
+  --color-sage: #8fb07f;
+  background: radial-gradient(1200px 400px at 10% -10%, rgba(255, 255, 255, 0.05), transparent 60%), #1b261d;
+  color: var(--color-ink);
+}
+.letter-paper {
+  background-color: #f6f1e1;
+}
+.night .letter-paper {
+  background-color: #2b3829;
+}

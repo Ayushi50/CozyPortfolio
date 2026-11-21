@@ -15,7 +15,7 @@ export function ContactPanel({ onClose }: { onClose: () => void }) {
   }
   return (
     <Dialog title="A letter for you" eyebrow="Contact · from the mailbox" onClose={onClose}>
-      <div className="letter mx-auto max-w-xl rounded-md border border-wood/40 bg-[#f6f1e1] p-6 shadow-[0_18px_40px_-18px_rgba(0,0,0,.4)] sm:p-9" style={{ backgroundImage: 'repeating-linear-gradient(transparent 0 31px, rgba(182,139,104,.18) 31px 32px)' }}>
+      <div className="letter mx-auto max-w-xl rounded-md border border-wood/40 letter-paper p-6 shadow-[0_18px_40px_-18px_rgba(0,0,0,.4)] sm:p-9" style={{ backgroundImage: 'repeating-linear-gradient(transparent 0 31px, rgba(182,139,104,.18) 31px 32px)' }}>
         <p className="font-display text-xl italic text-forest-deep">Dear visitor,</p>
         <p className="mt-3 leading-8">
           Thanks for wandering through the garden. I’m open to interesting engineering opportunities and conversations about reliable, useful software.
