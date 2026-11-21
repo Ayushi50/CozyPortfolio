@@ -350,3 +350,11 @@ body {
 .night .letter-paper {
   background-color: #2b3829;
 }
+
+/* night: lights are separate layers, so keep buildings still (no lift) to avoid lights drifting off their windows */
+.night .hotspot:hover .lift,
+.night .hotspot:focus-visible .lift,
+.night .hotspot.is-active .lift {
+  transform: none;
+  filter: none;
+}

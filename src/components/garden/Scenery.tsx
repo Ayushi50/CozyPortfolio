@@ -208,13 +208,13 @@ export function Overlay() {
         <rect x="-700" y="-500" width="3000" height="1900" fill="url(#gSun)" />
         <rect x="-700" y="-500" width="3000" height="1900" fill="url(#gDusk)" />
         <rect x="-700" y="-500" width="3000" height="1900" fill="url(#gGlowSun)" />
-        <g style={{ mixBlendMode: 'screen' }} opacity=".16">
+        <g opacity=".16">
           <polygon points="120,-40 260,-40 700,980 520,980" fill="url(#gBeam)" />
           <polygon points="420,-40 520,-40 1000,980 880,980" fill="url(#gBeam)" />
           <polygon points="760,-40 830,-40 1260,980 1170,980" fill="url(#gBeam)" />
         </g>
       </g>
-      <rect x="-700" y="-500" width="3000" height="1900" filter="url(#grain)" opacity=".15" style={{ mixBlendMode: 'multiply' }} />
+      <rect x="-700" y="-500" width="3000" height="1900" filter="url(#grain)" opacity=".15" />
     </g>
   )
 }
@@ -223,8 +223,8 @@ export function Overlay() {
 export function NightTint() {
   return (
     <g className="night-only" style={{ pointerEvents: 'none' }}>
-      <rect x="-700" y="-500" width="3000" height="1900" fill="#16264e" fillOpacity="0.66" style={{ mixBlendMode: 'multiply' }} />
-      <rect x="-700" y="-500" width="3000" height="1900" fill="url(#gMoon)" style={{ mixBlendMode: 'screen' }} />
+      <rect x="-700" y="-500" width="3000" height="1900" fill="#0f1d44" fillOpacity="0.6" />
+      <rect x="-700" y="-500" width="3000" height="1900" fill="url(#gMoon)" />
     </g>
   )
 }
