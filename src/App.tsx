@@ -68,7 +68,7 @@ export default function App() {
       setFocus(id)
       if (id === 'experience') setRoleIndex(extra ?? 0)
       setVisited((v) => new Set(v).add(id))
-      play(id === 'contact' ? 659.25 : 523.25)
+      play(id)
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
       timer.current = window.setTimeout(() => setDialog(id), reduce ? 0 : 950)
     },
@@ -79,13 +79,13 @@ export default function App() {
     window.clearTimeout(timer.current)
     setDialog(null)
     setFocus(null)
-    play(392, 0.4)
+    play('close')
   }, [play])
 
   useEffect(() => {
     const h = (e: KeyboardEvent) => {
       const t = e.target as HTMLElement
-      if (t.closest('input,textarea,select') || e.metaKey || e.ctrlKey || e.altKey) return
+      if (t?.closest?.('input,textarea,select') || e.metaKey || e.ctrlKey || e.altKey) return
       if (e.key === 'Escape') {
         if (classic) setClassic(false)
         else home()
@@ -121,8 +121,11 @@ export default function App() {
         }}
       />
       {dialog === 'about' && <AboutPanel onClose={home} />}
-      {dialog === 'projects' && <ProjectsPanel onClose={home} onPick={() => play(587.33, 0.35)} />}
-      {dialog === 'experience' && <ExperiencePanel index={roleIndex} setIndex={(n) => setRoleIndex(Math.max(0, Math.min(roles.length, n)))} onClose={home} />}
+      {dialog === 'projects' && <ProjectsPanel onClose={home} onPick={() => play('pick')} />}
+      {dialog === 'experience' && <ExperiencePanel index={roleIndex} setIndex={(n) => {
+        setRoleIndex(Math.max(0, Math.min(roles.length, n)))
+        play('stone')
+      }} onClose={home} />}
       {dialog === 'skills' && <SkillsPanel onClose={home} />}
       {dialog === 'contact' && <ContactPanel onClose={home} />}
       {classic && <ClassicView onExit={() => setClassic(false)} />}

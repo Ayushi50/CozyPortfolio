@@ -358,3 +358,28 @@ body {
   transform: none;
   filter: none;
 }
+
+/* skills shed chips in night mode: dark surfaces so the light text stays readable */
+.night .jar {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.04));
+  border-color: rgba(169, 201, 154, 0.4);
+  color: #ece7d7;
+}
+.night .book {
+  background: #26332a;
+  color: #ece7d7;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.35);
+}
+.night .tin {
+  background: color-mix(in srgb, var(--lid, #d5a28c) 55%, #1b261d);
+  color: #ece7d7;
+}
+.night .shelf-board {
+  background: linear-gradient(#8a6445, #6b4b32);
+}
+
+/* active path stone is light gold in both modes, so keep its text dark */
+.night [aria-current="step"],
+.night [aria-current="step"] * {
+  color: #2b3527;
+}
