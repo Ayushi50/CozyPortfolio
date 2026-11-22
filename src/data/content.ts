@@ -214,6 +214,23 @@ export const projects: Project[] = [
       { label: 'Data', sub: 'Cloudflare D1' },
     ],
   },
+  {
+    id: 'mood-garden',
+    name: 'Mood Garden',
+    kind: 'Side quest',
+    plant: 'fern',
+    plantName: 'Fern',
+    overview:
+      'A calm, private mood journal that grows a garden from daily check-ins, reflections and favorite moments. It works offline with gardens saved in the browser, with optional email sign-in and sync across devices.',
+    tech: ['React 18', 'TypeScript', 'Vite', 'Framer Motion', 'Neon Auth', 'Postgres'],
+    live: 'https://mood-garden-4rt.pages.dev/',
+    github: 'https://github.com/Ayushi50/MoodGarden',
+    architecture: [
+      { label: 'Web client', sub: 'React 18 · TypeScript · Vite · Framer Motion' },
+      { label: 'Identity & sync', sub: 'Neon Auth · Neon Data API' },
+      { label: 'Data', sub: 'Postgres · optional cloud sync' },
+    ],
+  },
 ]
 
 export interface SkillGroup {
