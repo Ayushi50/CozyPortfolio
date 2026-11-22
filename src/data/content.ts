@@ -149,14 +149,37 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: 'decoders',
-    name: 'DeCoders Website',
-    kind: 'Community',
+    id: 'syncroom',
+    name: 'SyncRoom',
+    kind: 'Full stack',
     plant: 'cactus',
     plantName: 'Cactus',
     overview:
-      'The official website for the DeCoders Programming Club at SIT, made to share community work and events.',
-    tech: ['React', 'Sass', 'Frontend'],
+      'Meeting room booking: search by date, time, headcount and equipment, see only rooms that are free, and get a confirmation email with a calendar invite.',
+    tech: ['Java 21', 'Spring Boot', 'PostgreSQL', 'React 18', 'Tailwind CSS', 'JWT'],
+    live: 'https://syncroom-g48g.onrender.com/',
+    github: 'https://github.com/Ayushi50/SyncRoom',
+    architecture: [
+      { label: 'Web client', sub: 'React 18 · Tailwind CSS' },
+      { label: 'API', sub: 'Java 21 · Spring Boot · JWT' },
+      { label: 'Data', sub: 'PostgreSQL' },
+    ],
+  },
+  {
+    id: 'gatepass',
+    name: 'Gatepass',
+    kind: 'Microservices',
+    plant: 'bonsai',
+    plantName: 'Bonsai',
+    overview:
+      'Live event ticket booking built as an event-driven microservices system, with seat holds, payments and a load test proving zero duplicate sales.',
+    tech: ['NestJS', 'Next.js', 'Kafka', 'PostgreSQL', 'Redis', 'Grafana'],
+    github: 'https://github.com/Ayushi50/Gatepass',
+    architecture: [
+      { label: 'Web client', sub: 'Next.js' },
+      { label: 'Services', sub: 'NestJS · Kafka · Redis' },
+      { label: 'Data & monitoring', sub: 'PostgreSQL · Grafana' },
+    ],
   },
   {
     id: 'library',

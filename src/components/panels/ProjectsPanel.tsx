@@ -32,7 +32,7 @@ export function ProjectsPanel({ onClose, onPick }: { onClose: () => void; onPick
     <Dialog title="The Greenhouse" eyebrow="Projects · each plant is a project" onClose={onClose} wide>
       {/* shelf */}
       <div role="tablist" aria-label="Projects" className="relative mb-6">
-        <div className="grid grid-cols-4 items-end gap-2 sm:gap-6">
+        <div className="grid grid-cols-2 items-end gap-2 sm:grid-cols-5 sm:gap-4">
           {projects.map((pr, k) => (
             <button
               key={pr.id}
